@@ -1,0 +1,15 @@
+.input {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.input button {
+  font-size: 2rem;
+  border: 1px solid blueviolet;
+  outline: none;
+}
+.input .span-two {
+  grid-column: span 2;
+}/*# sourceMappingURL=style.css.map */

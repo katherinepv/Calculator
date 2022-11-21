@@ -1,0 +1,17 @@
+.input {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    button {
+        font-size: 2rem;
+        border: 1px solid blueviolet;
+        outline: none;
+    }
+
+    .span-two {
+        grid-column: span 2;
+    }
+}
