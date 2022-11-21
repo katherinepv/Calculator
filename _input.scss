@@ -5,13 +5,34 @@
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
+
     button {
         font-size: 2rem;
         border: 1px solid blueviolet;
         outline: none;
+        width: 6.25rem;
+        height: 6.25rem;
+    }
+
+    button:hover {
+        background-color: rgba(255, 255, 255, 0.513);
     }
 
     .span-two {
         grid-column: span 2;
+        width: 12.5rem;
+    }
+
+    .input__number {
+        background-color: azure;
+    }
+
+    .input__equals {
+        background-color: lightgreen;
+
+    }
+
+    .input__operator {
+        background-color: lightblue;
     }
 }

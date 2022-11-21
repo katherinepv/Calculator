@@ -6,6 +6,7 @@ const equalsButton = document.querySelector(".input__equals");
 const backspaceButton = document.querySelector(".input__backspace");
 const numberButtons = document.querySelectorAll(".input__number");
 const operatorButtons = document.querySelectorAll(".input__operator");
+const decimalButton = document.querySelector("#input__decimal-point");
 
 let num1 = "";
 let operator = "";
@@ -15,12 +16,29 @@ let num2 = "";
 
 // function to input numbers: num1
 const handleNum1 = (event) => {
-  const userNumber1Input = event.target.innerText;
-  num1 += userNumber1Input;
-  calculationExpression.innerText = num1;
-  // num1 = Number(num1); this may be needed further down
+  const userNumberInput = event.target.innerText;
+  num1 += userNumberInput;
+  calculationAnswer.innerText = num1;
   console.log(num1);
+  // num1 = Number(num1); this may be needed further down
+  /*if (userNumberInput.includes(operator)) {
+    break; trying to make num1 and num2 seperate
+    console.log(num1);*/
 };
+
+// //trying to merge num1 and num2 into one function
+// const handleNum = (event) => {
+//   if (calculationExpression === false) {
+//     const userNumberInput = event.target.innerText;
+//     num1 += userNumberInput;
+//     calculationExpression.innerText = num1;
+//   }
+//   if (calculationExpression === true && operator === true) {
+//     const userNumberInput = event.target.innerText;
+//     num2 += userNumberInput;
+//     calculationExpression.innerText = num2;
+//   }
+// };
 
 // might neeed this for later
 // const displayNum1 = (num1) => {
@@ -30,14 +48,16 @@ const handleOperator = (event) => {
   const userOperatorInput = event.target.innerText;
   operator = userOperatorInput;
   calculationExpression.innerText = `${num1} ${operator}`;
+  console.log(operator);
 };
 
 // function to input numbers: num2
 const handleNum2 = (event) => {
-  if (operator === true) {
+  if (operator !== "") {
     const userNumber2Input = event.target.innerText;
     num2 += userNumber2Input;
-    calculationExpression.innerText = `${num1} ${operator} ${num2}`;
+    calculationAnswer.innerText = /*`${num1} ${operator}*/ `${num2}`;
+    console.log(num2);
   }
   return;
 };
@@ -48,17 +68,18 @@ const handleNum2 = (event) => {
 const calculate = (num1, num2, operator) => {
   let result = "";
 
-  if (operator === "+") {
+  if (operator == "+") {
     result = Number(num1) + Number(num2);
-  } else if (operator === "-") {
+  } else if (operator == "-") {
     result = Number(num1) - Number(num2);
-  } else if (operator === "*") {
+  } else if (operator == "*") {
     result = Number(num1) * Number(num2);
-  } else if (operator === "/") {
+  } else if (operator == "/") {
     result = Number(num1) / Number(num2);
   }
-  return result;
-  calculationAnswer.innerText = result;
+  // return result;
+  console.log(result);
+  calculationAnswer.innerText = `${result}`;
 };
 
 // function to clear display
@@ -68,6 +89,22 @@ const clearDisplay = () => {
   operator = "";
   calculationAnswer.innerText = "0";
   calculationExpression.innerText = "";
+};
+
+// function to use backspace button
+const handleBackspace = (event) => {
+  let removeLastInput = calculationExpression.innerText.slice(0, -1);
+  return removeLastInput;
+};
+
+// function to restrict decimal point usage
+const handleDecimalPoint = (event) => {
+  if (userNumberInput === "." && num1.includes(".")) {
+    return;
+  } else if (usernumberInput === "." && num2.includes(".")) {
+    return;
+  } else {
+  }
 };
 
 // Event Listeners
@@ -89,3 +126,5 @@ for (let index = 0; index < numberButtons.length; index++) {
 
 clearButton.addEventListener("click", clearDisplay);
 equalsButton.addEventListener("click", calculate);
+backspaceButton.addEventListener("click", handleBackspace);
+decimalButton.addEventListener("click", handleBackspace);
