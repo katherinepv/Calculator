@@ -44,8 +44,7 @@ const updateExpressionDisplayHtml = () => {
 };
 
 // function to calculate with inputted numbers and operator
-const calculate = (event, num1, operator, num2) => {
-  const userPressedEquals = event.target.innerText;
+const calculate = () => {
   let result = "";
 
   if (operator === "+") {
@@ -57,16 +56,8 @@ const calculate = (event, num1, operator, num2) => {
   } else if (operator === "/") {
     result = parseFloat(num1) / parseFloat(num2);
   }
-  return result;
   calculationAnswer.innerText = `${result}`;
-  //   console.log(result);
-  //   updateAnswerDisplayHtml();
-};
-
-//function to display calculation result on display
-const updateAnswerDisplayHtml = () => {
-  calculate();
-  calculationAnswer.innerText = `${result}`;
+  console.log(result);
 };
 
 // function to use backspace button
