@@ -33,6 +33,9 @@ const getOperator = (event) => {
   operator = userOperatorInput;
   console.log(operator);
   updateExpressionDisplayHtml();
+  //   if (operator !== "" && num2 !== "") {
+  //     return;
+  //   }
 };
 
 // function to display inputs on expression display
@@ -41,21 +44,23 @@ const updateExpressionDisplayHtml = () => {
 };
 
 // function to calculate with inputted numbers and operator
-const calculate = (num1, operator, num2) => {
+const calculate = (event, num1, operator, num2) => {
+  const userPressedEquals = event.target.innerText;
   let result = "";
 
-  if (operator == "+") {
-    result = Number(num1) + Number(num2);
-  } else if (operator == "-") {
-    result = Number(num1) - Number(num2);
-  } else if (operator == "*") {
-    result = Number(num1) * Number(num2);
-  } else if (operator == "/") {
-    result = Number(num1) / Number(num2);
+  if (operator === "+") {
+    result = parseFloat(num1) + parseFloat(num2);
+  } else if (operator === "-") {
+    result = parseFloat(num1) - parseFloat(num2);
+  } else if (operator === "*") {
+    result = parseFloat(num1) * parseFloat(num2);
+  } else if (operator === "/") {
+    result = parseFloat(num1) / parseFloat(num2);
   }
   return result;
-  console.log(result);
-  updateAnswerDisplayHtml();
+  calculationAnswer.innerText = `${result}`;
+  //   console.log(result);
+  //   updateAnswerDisplayHtml();
 };
 
 //function to display calculation result on display
@@ -67,7 +72,7 @@ const updateAnswerDisplayHtml = () => {
 // function to use backspace button
 const handleBackspace = (event) => {
   let removeLastInput = calculationExpression.innerText.slice(0, -1);
-  //   updateExpressionDisplayHtml();
+  return (calculationExpression.innerText = removeLastInput);
 };
 
 // function to restrict decimal point usage
@@ -82,9 +87,9 @@ const handleDecimalPoint = (event) => {
 
 // function to clear display
 const clearDisplay = () => {
-  let num1 = "";
-  let num2 = "";
-  let operator = "";
+  num1 = "";
+  num2 = "";
+  operator = "";
   calculationAnswer.innerText = "0";
   calculationExpression.innerText = "";
 };
