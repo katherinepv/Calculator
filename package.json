@@ -1,0 +1,23 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "A calculator project using HTML, SCSS and JavaScript.\r The aim is for the calculator to accept input from the user through pressing on the calculator buttons and this will then display the correct result.\r Further steps are to ensure the correct functioning of the backspace button and restriction of the use of the decimal point.",
+  "main": "app.js",
+  "scripts": {
+    "test:cypress": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katherinepv/Calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katherinepv/Calculator/issues"
+  },
+  "homepage": "https://github.com/katherinepv/Calculator#readme",
+  "devDependencies": {
+    "cypress": "^11.2.0"
+  }
+}
