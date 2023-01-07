@@ -8,12 +8,12 @@
     <title>Calculator</title>
   </head>
   <body class="calculator-container">
-    <div class="display">
-      <p id="display__expression"></p>
-      <p id="display__answer">0</p>
-    </div>
-    <div class="input">
-      <button class="span-two" class="input__clear" id="input__clear">C</button>
+    <section class="display">
+      <input class="display__output" type="text" readonly>
+      <input class="display__result" type="text" readonly>
+    </section>
+    <section class="input">
+      <button class="span-two input__clear" id="input__clear">C</button>
       <button class="input__backspace" id="input__backspace">&#8678</button>
       <button class="input__operator" id="input__divide">/</button>
       <button class="input__number" id="input__7">7</button>
@@ -31,7 +31,7 @@
       <button class="span-two input__number" id="input__0">0</button>
       <button class="input__number" id="input__decimal-point">.</button>
       <button class="input__equals" id="input__equals">=</button>
-      <script src="app.js"></script>
-    </div>
+    </section>
+    <script src="app.js"></script>
   </body>
 </html>

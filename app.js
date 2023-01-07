@@ -1,69 +1,78 @@
-/* DOM / Global Variables */
-const calculationAnswer = document.querySelector("#display__answer");
-const calculationExpression = document.querySelector("#display__expression");
-const clearButton = document.querySelector("#input__clear");
-const equalsButton = document.querySelector(".input__equals");
-const backspaceButton = document.querySelector(".input__backspace");
+/* DOM elements */
+// arrays of DOM elements
 const numberButtons = document.querySelectorAll(".input__number");
 const operatorButtons = document.querySelectorAll(".input__operator");
+
+// individual DOM elements
+const displayOutput = document.querySelector(".display__output");
+const displayResult = document.querySelector(".display__result");
+
+const clearButton = document.querySelector(".input__clear");
+const equalsButton = document.querySelector(".input__equals");
+const backspaceButton = document.querySelector(".input__backspace");
 const decimalButton = document.querySelector("#input__decimal-point");
 
 let num1 = "";
-let operator = "";
 let num2 = "";
+let operator = "";
 
 /* Functions */
 
 // function to input numbers (num1 and num2)
-const getNumInput = (event) => {
-  const userNumberInput = event.target.innerText;
+const handleNumInput = (event) => {
+  const selectedNum = event.target.innerText;
   if (operator === "") {
-    num1 += userNumberInput;
-    console.log(num1);
+    num1 += selectedNum;
   } else {
-    num2 += userNumberInput;
-    console.log(num2);
+    num2 += selectedNum;
   }
-  updateExpressionDisplayHtml();
+  showOutput();
 };
 
 // funtion to input operator
-const getOperator = (event) => {
-  const userOperatorInput = event.target.innerText;
-  operator = userOperatorInput;
-  console.log(operator);
-  updateExpressionDisplayHtml();
-  //   if (operator !== "" && num2 !== "") {
-  //     return;
-  //   }
+const handleOperatorInput = (event) => {
+  const selectedOperator = event.target.innerText;
+
+  operator = selectedOperator;
+  showOutput();
 };
 
-// function to display inputs on expression display
-const updateExpressionDisplayHtml = () => {
-  calculationExpression.innerText = `${num1} ${operator} ${num2}`;
+// function to display inputs on display output
+const showOutput = () => {
+  const outputExpressionString = `${num1} ${operator} ${num2}`;
+  displayOutput.value = outputExpressionString;
 };
 
 // function to calculate with inputted numbers and operator
-const calculate = () => {
-  let result = "";
+const calculateResult = (firstNum, operator, secondNum) => {
+  const parsedFirstNum = parseFloat(firstNum);
+  const parsedSecondNum = parseFloat(secondNum);
 
   if (operator === "+") {
-    result = parseFloat(num1) + parseFloat(num2);
+    return parsedFirstNum + parsedSecondNum;
   } else if (operator === "-") {
-    result = parseFloat(num1) - parseFloat(num2);
+    return parsedFirstNum - parsedSecondNum;
   } else if (operator === "*") {
-    result = parseFloat(num1) * parseFloat(num2);
+    return parsedFirstNum * parsedSecondNum;
   } else if (operator === "/") {
-    result = parseFloat(num1) / parseFloat(num2);
+    return parsedFirstNum / parsedSecondNum;
   }
-  calculationAnswer.innerText = `${result}`;
-  console.log(result);
+};
+
+// function to use equals button
+const handleEquals = () => {
+  const result = calculateResult(num1, operator, num2);
+  displayResult.value = result;
 };
 
 // function to use backspace button
 const handleBackspace = (event) => {
-  let removeLastInput = calculationExpression.innerText.slice(0, -1);
-  return (calculationExpression.innerText = removeLastInput);
+  if (operator === "") {
+    num1 = num1.slice(0, -1);
+  } else {
+    num2 = num2.slice(0, -1);
+  }
+  showOutput();
 };
 
 // function to restrict decimal point usage
@@ -77,34 +86,35 @@ const handleDecimalPoint = (event) => {
 };
 
 // function to clear display
-const clearDisplay = () => {
+const handleClear = (event) => {
   num1 = "";
   num2 = "";
   operator = "";
-  calculationAnswer.innerText = "0";
-  calculationExpression.innerText = "";
+  displayOutput.value = "";
+  displayResult.value = "";
+  showOutput();
 };
 
 /* Event Listeners */
 
 //event listener for number buttons
 for (let index = 0; index < numberButtons.length; index++) {
-  numberButtons[index].addEventListener("click", getNumInput);
+  numberButtons[index].addEventListener("click", handleNumInput);
 }
 
 // event listener for operator buttons
 for (let index = 0; index < operatorButtons.length; index++) {
-  operatorButtons[index].addEventListener("click", getOperator);
+  operatorButtons[index].addEventListener("click", handleOperatorInput);
 }
 
 // event listener to display answer when pressing equals button
-equalsButton.addEventListener("click", calculate);
+equalsButton.addEventListener("click", handleEquals);
 
 // event listener for backspace button
 backspaceButton.addEventListener("click", handleBackspace);
 
 // event listener for clear button
-clearButton.addEventListener("click", clearDisplay);
+clearButton.addEventListener("click", handleClear);
 
 // event listener for decimal point
 decimalButton.addEventListener("click", handleDecimalPoint);
