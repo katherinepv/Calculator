@@ -33,6 +33,14 @@ const handleNumInput = (event) => {
 const handleOperatorInput = (event) => {
   const selectedOperator = event.target.innerText;
 
+  if (num2 !== "") {
+    num1 = calculateResult(num1, operator, num2);
+    num2 = "";
+    operator = selectedOperator;
+    showOutput();
+    return;
+  }
+
   operator = selectedOperator;
   showOutput();
 };
