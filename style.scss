@@ -1,3 +1,5 @@
-@use "variables";
-@use "input";
-@use "./display";
+// @use "variables";
+@use "./styles/reset";
+@use "./styles/variables" as *;
+@use "./styles/input";
+@use "./styles/display";

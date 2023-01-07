@@ -10,18 +10,34 @@ const displayResult = document.querySelector(".display__result");
 const clearButton = document.querySelector(".input__clear");
 const equalsButton = document.querySelector(".input__equals");
 const backspaceButton = document.querySelector(".input__backspace");
-const decimalButton = document.querySelector("#input__decimal-point");
+// const decimalButton = document.querySelector("#input__decimal-point");
 
 let num1 = "";
 let num2 = "";
 let operator = "";
 
 /* Functions */
+// restrict decimal point
+// const restrictDecimalPoint = () => {
+//   if (selectedNum === "." && num1.includes(".")) {
+//     return;
+//   }
+// };
 
 // function to input numbers (num1 and num2)
 const handleNumInput = (event) => {
   const selectedNum = event.target.innerText;
+  // const restrictDecimalPoint = () => {
+  //   if (selectedNum === "." && !num1.includes(".")) {
+  //     return;
+  //     // if (selectedNum === "." && num1.includes(".")) {
+  //     //   return;
+  //     showOutput();
+  //   }
+  // };
+
   if (operator === "") {
+    // restrictDecimalPoint();
     num1 += selectedNum;
   } else {
     num2 += selectedNum;
@@ -83,16 +99,6 @@ const handleBackspace = (event) => {
   showOutput();
 };
 
-// function to restrict decimal point usage
-const handleDecimalPoint = (event) => {
-  if (userNumberInput === "." && num1.includes(".")) {
-    return;
-  } else if (usernumberInput === "." && num2.includes(".")) {
-    return;
-  } else {
-  }
-};
-
 // function to clear display
 const handleClear = (event) => {
   num1 = "";
@@ -124,5 +130,5 @@ backspaceButton.addEventListener("click", handleBackspace);
 // event listener for clear button
 clearButton.addEventListener("click", handleClear);
 
-// event listener for decimal point
-decimalButton.addEventListener("click", handleDecimalPoint);
+// // event listener for decimal point
+// decimalButton.addEventListener("click", handleDecimalRestriction);

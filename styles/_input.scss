@@ -1,0 +1,59 @@
+@use "./variables" as *;
+
+.input {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    grid-gap: 0.3rem 0.3rem;
+    width: 100%;
+    padding: 0.5rem;
+    border-style: solid;
+    border-radius: 1rem;
+    border-color: $primary-foreground-color;
+    background-color: $primary-foreground-color;
+
+
+    button {
+        color: $white-color;
+        font-family: $primary-font;
+        font-weight: bold;
+        font-size: 2rem;
+        height: 4rem;
+        width: 4rem;
+        margin: auto;
+        border-radius: 1rem;
+    }
+
+    button:hover {
+        background-color: rgb(31, 134, 157);
+    }
+
+    .span-two {
+        grid-column: span 2;
+        width: 9rem;
+    }
+
+    .input__number {
+        background-color: $primary-color;
+    }
+
+    .input__equals {
+        background-color: $tertiary-color;
+        border-radius: 50%;
+
+    }
+
+    .input__operator {
+        border-radius: 50%;
+    }
+
+    .input__operator,
+    .input__clear,
+    .input__backspace {
+        background-color: $secondary-color;
+    }
+
+}
